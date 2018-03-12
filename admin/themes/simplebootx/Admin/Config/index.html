@@ -1,0 +1,94 @@
+<layout name="tab_layout" />
+
+<div class="result-wrap">
+	<ul class="nav nav-tabs" role="tablist" id="myTab" style="height:40px;">
+		<volist name="group_list" id="group">
+		<li <if condition="$i eq 1">class="active"</if> ><a href="#{$group['code']}" role="tab" data-toggle="tab">{$group['name']}</a></li>
+		</volist>
+	</ul>
+	<form action="{:U('post')}" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
+		<div class="tab-content">
+		<volist name="group_list" id="group" key="item">
+			<div class="tab-pane <if condition="$item eq 1"> active</if>" id="{$group['code']}">
+				<table class="insert-tab" width="100%">
+				<volist name="group.vars" id="var" key="key">
+					<tr>
+						<td width="200" valign="top"> {$var['name']}: </td>
+						<td><div class="row">
+						<switch name="var.type">
+						<case value="text">
+							<div class="col-md-4"><input name="value[{$var['id']}]" type="text" value="{$var['value']}" class="form-control input-sm" />
+						</case>
+						<case value="password">
+							<div class="col-md-4"><input name="value[{$var['id']}]" type="password" value="{$var['value']}" class="form-control input-sm" />
+						</case>
+						<case value="textarea">
+							<div class="col-md-5"><textarea name="value[{$var['id']}]" rows="6" class="form-control input-sm">{$var['value']}</textarea>
+						</case>
+						<case value="select">
+							<div class="col-md-8">
+								<div class="btn-group" data-toggle="buttons">
+								<volist name="var.store_options" id="opt" key="k">
+									<label class="btn btn-primary btn-sm<if condition="$var.value eq $opt"> active</if>">
+										<input type="radio" name="value[{$var['id']}]" id="value_{$var['id']}_{$k}" value="{$opt}"<if condition="$var.value eq $opt"> checked</if>
+										<if condition="$var.code eq 'rewrite'">
+											onclick="return ReWriterConfirm(this);"
+										</if>
+										<if condition="($var.code eq 'smtp_ssl' AND $opt eq 1)"> 
+											onclick="return confirm('{$lang['smtp_ssl_confirm']}');"
+										</if>
+										<if condition="$var.code eq 'enable_gzip' AND $opt eq 1">
+											onclick="return confirm('{$lang['gzip_confirm']}');"
+										</if>
+										<if condition="$var.code eq 'retain_original_img' AND $opt eq 0">
+											onclick="return confirm('{$lang['retain_original_confirm']}');"
+										</if>
+										/>
+										{$var['display_options'][$k]} </label>
+								</volist>
+								</div>
+						</case>
+						<case value="options">
+							<div class="col-md-3">
+								<select name="value[{$var['id']}]" id="value_{$var['id']}_{$key}" class="form-control input-sm">
+									<volist name=":L('cfg_range.' . $var['code'])" id="vo" key="key">
+									<option value="{$key}"<if condition="$var.value eq $key"> selected</if>>{$vo}</option>
+									</volist>
+								</select>
+						</case>
+						<case value="file">
+							<div class="col-md-4"><input name="{$var['code']}" type="file" size="40" class="form-control input-sm" /></div>
+							<div class="col-md-1">
+							<if condition="(($var.code eq 'user_center_wrapper') OR ($var.code eq 'shop_logo') OR ($var.code eq 'no_picture') OR ($var.code eq 'watermark') OR ($var.code eq 'shop_slagon') OR ($var.code eq 'wap_logo')) AND is_string($var['value'])">
+								<a href="javascript:;" class="glyphicon glyphicon-picture" style="text-decoration:none;" onClick="showImg('{$var['code']}_layer', '{$var['name']}')" title="View"></a><br>
+								<a href="{:U('del', array('code'=> $var['code']))}" class="glyphicon glyphicon-remove" style="text-decoration:none;" title="Delete"></a> 
+								<div id="{$var['code']}_layer" style="display:none"> <img src="{$var['value']}" border="0" style="max-width:320px; max-height:320px;" /> </div>
+							</if>
+						</case>
+						<case value="manual">
+							<if condition="$var.code eq 'lang'">
+							<div class="col-md-2"><select name="value[{$var['id']}]" class="form-control input-sm">
+							<volist name="lang_list" id="vo">
+							<option value="{$vo}"<if condition="$var.value eq $vo"> selected</if>>{$vo}</option>
+							</volist>
+							</select>
+							</if>
+						</case>
+						</switch>
+						</div></div>
+						<if condition="is_string($var['desc'])">
+							<div class="row"><div class="col-md-12" style="padding-top:10px;display: block;">{$var['desc']}</div></div>
+						</if>
+						</td>
+					</tr>
+				</volist>
+			</table>
+			</div>
+			</volist>
+			<div style="padding:10px 0 0 200px; border-top:1px #ddd solid;">
+				<input name="submit" type="submit" value="{:L('button_submit')}" class="btn btn-primary" />
+				<input name="reset" type="reset" value="{:L('button_return')}" class="btn btn-default" />
+			</div>
+			</div>
+	</form>
+</div>

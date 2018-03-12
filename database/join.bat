@@ -1,0 +1,1 @@
+python sql.py -j yxtcmf yxtcmf.sql

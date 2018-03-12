@@ -1,0 +1,44 @@
+*** Settings ***
+Library           Selenium2Library
+Library           Collections
+Library           requests
+Library           json
+Library           RequestsLibrary
+
+*** Variables ***
+${HOST}           http://127.0.0.1:8885
+${cluster_info}    {"creater":"Tom","cluster_name":"ks3","create_way": "create"}
+&{headers}        token=1234567890987654321
+${cluster_name}    cluster_name=ks3
+${group_name}     group_name=spac1
+${workspace}      workspace=k8s3
+
+*** Test Cases ***
+CreateSession
+    Create Session    cluster    ${HOST}
+
+create
+    ${resp}=    Post Request    cluster    /v1/cluster/create    ${cluster_info}    \    ${headers}
+    Should Be Equal As Strings    ${resp.status_code}    200
+    ${result}    To Json    ${resp.text}
+    Should Be Equal As Integers    ${result['error_code']}    0
+
+list
+    ${resp}    Get Request    cluster    /v1/cluster/list    ${headers}
+    Should Be Equal As Strings    ${resp.status_code}    200
+    ${result}    To Json    ${resp.text}
+    Should Be Equal As Integers    ${result['error_code']}    0
+
+readlist
+    ${resp}=    Get Request    cluster    /v1/cluster/list    ${headers}
+    Should Be Equal As Strings    ${resp.status_code}    200
+    ${result}    To Json    ${resp.text}
+    Should Be Equal As Integers    ${result['result']}    0
+
+remove_cluster
+    ${resp}=    Get Request    cluster    /v1/cluster/remove_cluster/?${cluster_name}    \    ${headers}
+    Should Be Equal As Strings    ${resp.status_code}    200
+    ${result}    To Json    ${resp.text}
+    Should Be Equal As Integers    ${result['error_code']}    0
+
+

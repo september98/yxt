@@ -1,0 +1,38 @@
+<div class="sidebar-content">
+            <ul class="sidebar-list">
+           <!--
+            <?php $menu=session('menu');
+                foreach ($menu as $k => $v):
+            ?>
+                <li>
+                    <a href="#"><i class="icon-font">&#xe003;</i><?php echo $v['pri_name'];?></a>
+                    <ul class="sub-menu">
+                    <?php foreach ($v['sub'] as $k1 => $v1): ?>
+                        <li><a href="<?php echo U($v1['mname'].'/'.$v1['cname'].'/'.$v1['aname']);?>"><i class="icon-font">&#xe008;</i><?php echo $v1['pri_name'];?></a></li>
+                    <?php endforeach;?>
+                    </ul>
+                </li>
+            <?php endforeach;?>
+                -->   
+                   
+                <li>
+                    <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
+                    <ul class="sub-menu">
+						<li><a href="__MODULE__/Casecategory/index"><i class="icon-font">&#xe052;</i>案例分类</a></li>
+                        <li><a href="__MODULE__/Customers/index"><i class="icon-font">&#xe052;</i>客户案例</a></li>
+                        <li><a href="__MODULE__/Idc/index"><i class="icon-font">&#xe052;</i>IDC管理</a></li>
+                        <li><a href="__MODULE__/Product/index"><i class="icon-font">&#xe052;</i>产品管理</a></li>
+                        <li><a href="__MODULE__/Sales/index"><i class="icon-font">&#xe052;</i>在线QQ</a></li>
+                        <li><a href="__MODULE__/News/index"><i class="icon-font">&#xe052;</i>新闻管理</a></li>                        
+						<li><a href="__MODULE__/Article/index"><i class="icon-font">&#xe005;</i>文章管理</a></li>
+						<li><a href="__MODULE__/Config/index"><i class="icon-font">&#xe017;</i>配置管理</a></li>
+                        <li><a href="__MODULE__/Album/index"><i class="icon-font">&#xe017;</i>相册管理</a></li>
+                        <li><a href="__MODULE__/Admin/lst"><i class="icon-font">&#xe006;</i>管理员管理</a></li>
+                        <li><a href="__MODULE__/Apply/index"><i class="icon-font">&#xe006;</i>申请列表</a></li>
+                        <li><a href="__MODULE__/Job/lst"><i class="icon-font">&#xe012;</i>求职信息</a></li>
+                        <li><a href="__MODULE__/Link/lst"><i class="icon-font">&#xe052;</i>友情链接</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>

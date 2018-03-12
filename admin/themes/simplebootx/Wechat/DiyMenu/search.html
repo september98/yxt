@@ -1,0 +1,32 @@
+<div class="search-wrap">
+	<div class="search-content">
+		<form class="well form-search" action="javascript:searchData()" method="post" name="searchForm">
+			<table class="search-tab">
+				<tr>
+					<th width="70" align="right">{:L('keyword')}:</th>
+					<td><input class="form-control" placeholder="关键字" name="keyword" value="" type="text"></td>
+					<td width="100" align="right">{:L('start_date')}:</td>
+					<td><input class="js-date form-control length_2" name="start_date" type="text"></td>
+					<td width="100" align="right">{:L('end_date')}:</td>
+					<td><input class="js-date form-control length_2" name="end_date" type="text"></td>
+					<td><input class="btn btn-primary btn2 ml10" name="sub" value="{:L('button_search')}" type="submit"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+<script language="JavaScript">
+	/**
+     * 搜索订单
+     */
+	function searchData()
+	{
+		listTable.filter['keyword'] = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+		listTable.filter['start_date'] = Utils.trim(document.forms['searchForm'].elements['start_date'].value);
+		listTable.filter['end_date'] = Utils.trim(document.forms['searchForm'].elements['end_date'].value);
+		listTable.filter['page'] = 1;
+		listTable.loadList();
+	}
+</script>
+

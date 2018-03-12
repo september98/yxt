@@ -1,0 +1,14 @@
+<layout name="index_layout" />
+	  <ul class="nav nav-tabs">
+	     <li><a href="{:U('AdminSection/index')}">所有课时</a></li>
+         <li class="active"><a href="{:U('AdminSection/add',array('term'=>empty($term['term_id'])?'':$term['term_id']))}"  target="_self">批量导入</a></li>
+      </ul>
+	 
+	</div>
+
+	<script type="text/javascript">
+function formReset()
+  {
+  document.getElementById("myform").reset()
+  }
+</script>

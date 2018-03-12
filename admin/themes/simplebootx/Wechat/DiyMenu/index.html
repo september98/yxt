@@ -1,0 +1,78 @@
+<layout name="index_layout" />
+
+<if condition="$full_page" >
+<include file="../Wechat/DiyMenu/search" />
+
+<div class="result-wrap">
+	<form name="myform" id="myform" method="post">
+		<div class="result-content" id="listDiv">
+</if>
+			<table class="table table-hover table-bordered table-list" width="100%">
+				<tr>
+					<th class="tc" width="5%"><input class="allChoose" name="" id='check' type="checkbox"></th>
+					
+					<th><center><a href="javascript:listTable.sort('menu_id'); ">{:L('menu_id')}</a></center></th>
+
+					<th><center><a href="javascript:listTable.sort('parent_id'); ">{:L('parent_id')}</a></center></th>
+
+					<th><center><a href="javascript:listTable.sort('title'); ">{:L('title')}</a></center></th>
+
+					<th><center><a href="javascript:listTable.sort('keyword'); ">{:L('keyword')}</a></center></th>
+
+					<th><center><a href="javascript:listTable.sort('is_show'); ">{:L('is_show')}</a></center></th>
+
+					<th><center><a href="javascript:listTable.sort('sort'); ">{:L('sort')}</a></center></th>
+
+					<th><center><a href="javascript:listTable.sort('url'); ">{:L('url')}</a></center></th>
+
+					<th><center><a href="javascript:listTable.sort('menu_type'); ">{:L('menu_type')}</a></center></th>
+					<th><center>操作</center></th>
+				</tr>
+				<volist name="list" id="vo">
+				<tr>
+					<td class="tc">
+						<input name="ids[]" value="$vo['menu_id']" class="check" type="checkbox">
+					</td>
+					
+					<td><center><span onclick="javascript:listTable.edit(this, 'edit_menu_id', {$vo['menu_id']})">{$vo['menu_id']}</span></center></td>
+
+					<td><center><span onclick="javascript:listTable.edit(this, 'edit_parent_id', {$vo['menu_id']})">{$vo['parent_id']}</span></center></td>
+
+					<td><center><span onclick="javascript:listTable.edit(this, 'edit_title', {$vo['menu_id']})">{$vo['title']}</span></center></td>
+
+					<td><center><span onclick="javascript:listTable.edit(this, 'edit_keyword', {$vo['menu_id']})">{$vo['keyword']}</span></center></td>
+
+					<td><center><span onclick="javascript:listTable.edit(this, 'edit_is_show', {$vo['menu_id']})">{$vo['is_show']}</span></center></td>
+
+					<td><center><span onclick="javascript:listTable.edit(this, 'edit_sort', {$vo['menu_id']})">{$vo['sort']}</span></center></td>
+
+					<td><center><span onclick="javascript:listTable.edit(this, 'edit_url', {$vo['menu_id']})">{$vo['url']}</span></center></td>
+
+					<td><center><span onclick="javascript:listTable.edit(this, 'edit_menu_type', {$vo['menu_id']})">{$vo['menu_type']}</span></center></td>
+					<td>
+						<div class="btn-group">
+							<button type="button" class="btn btn-default">管理</button>
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+							<span class="caret"></span>
+							<span class="sr-only"></span>
+							</button>
+							<ul class="dropdown-menu pull-right" role="menu" >
+							<li><a class="link-update" href="{:U('edit', array('id'=>$vo['menu_id']))}">{:L('edit')}</a></li>
+							<li><a class="link-del" onclick="return confirm('{:L('remove_confirm')}');" href="{:U('del', array('id'=>$vo['menu_id']))}">{:L('remove')}</a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+				</volist>
+			</table>
+<if condition="$full_page">
+			<include file="Common/page" />
+		</div>
+		<div class="list_act_div">
+			<a href="{:U('add')}" class="btn btn-primary btn2">{:L('add')}</a>
+			<input name="remove" type="submit" id="btnSubmit" value="{:L('remove')}" class="btn btn-default" disabled="true" onclick="this.form.target = '_self'" />
+			<input name="batch" type="hidden" value="1" />
+		</div>
+	</form>
+</div>
+</if>

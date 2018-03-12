@@ -1,0 +1,70 @@
+<layout name="add_layout" />
+
+<div class="result-wrap">
+    <div class="result-content">
+        <form action="{:U('insert')}" method="post" id="myform" name="myform" enctype="multipart/form-data">
+            <table class="insert-tab" width="100%">
+                <tbody>
+                
+                    <tr>
+                        <th width="150"><i class="require-red">*</i>{:L('parent_id')}:</th>
+                        <td>
+                                                        <input class="form-control length_3" name="data[parent_id]" maxlength="20" size="50" value="" type="text" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="150"><i class="require-red">*</i>{:L('title')}:</th>
+                        <td>
+                                                        <input class="form-control length_3" name="data[title]" maxlength="20" size="50" value="" type="text" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="150"><i class="require-red">*</i>{:L('keyword')}:</th>
+                        <td>
+                                                        <input class="form-control length_3" name="data[keyword]" maxlength="20" size="50" value="" type="text" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="150"><i class="require-red">*</i>{:L('is_show')}:</th>
+                        <td>
+                            <div class="make-switch" data-on="primary" data-off="info" data-on-label="{:L('is_show_yes')}" data-off-label="{:L('is_show_no')}" >
+		                            <input name="data[is_show]" type="checkbox" checked>
+		                        </div>
+                                                    </td>
+                    </tr>
+
+                    <tr>
+                        <th width="150"><i class="require-red">*</i>{:L('sort')}:</th>
+                        <td>
+                                                        <input class="form-control length_3" name="data[sort]" maxlength="20" size="50" value="" type="text" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="150"><i class="require-red">*</i>{:L('url')}:</th>
+                        <td>
+                                                        <input class="form-control length_3" name="data[url]" maxlength="20" size="50" value="" type="text" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th width="150"><i class="require-red">*</i>{:L('menu_type')}:</th>
+                        <td>
+                                                        <input class="form-control length_3" name="data[menu_type]" maxlength="20" size="50" value="" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <input class="btn btn-primary btn6 mr10" value="{:L('button_submit')}" type="submit">
+                            <input class="btn btn6" onclick="history.go(-1)" value="{:L('button_return')}" type="button">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>

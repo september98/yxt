@@ -1,0 +1,317 @@
+<tc_include file="Public:header" />       
+    <section class="poster hidden-xs">
+      <div id="carousel" class="carousel slide" data-ride="carousel">
+       <ol class="carousel-indicators">
+        <volist name="slide" id="vo" key="$key">
+          <if condition="$key eq 0">
+             <li data-target="#carousel" data-slide-to="{$key}" class="active"></li>
+          <else/>
+             <li data-target="#carousel" data-slide-to="{$key}" class=""></li>
+          </if>
+        </volist>  
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <volist name="slide" id="vo" key="$key">
+         <if condition="$key eq 0">
+            <div class="item active">
+             <a href="{$vo['slide_url']}" target="_self"><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" alt="{$vo['slide_des']}"></a>
+            </div>
+          <else/>
+            <div class="item">
+             <a href="{$vo['slide_url']}" target="_self"><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" alt="{$vo['slide_des']}"></a>
+            </div>
+         </if>
+        </volist>  
+      </div>
+       <a class="left carousel-control hidden-xs" href="#carousel" role="button" data-slide="prev">
+         <i class="iconfont icon-jiantou3 carousel-left"></i>
+       </a>
+       <a class="right carousel-control hidden-xs" href="#carousel" role="button" data-slide="next">
+         <i class="iconfont icon-jiantou4 carousel-right"></i>
+       </a>
+     </div>
+    </section>
+	<div class="some_total  hidden-xs" >
+		<div class="warp  hidden-xs">
+			<ul class="col-md-12">
+				<li class="col-md-3"><i class="icon_1"></i><div><span class="num">10<sup>+</sup><sub>个</sub></span><span>在线专业总数</span></div></li>
+				<li class="col-md-3"><i class="icon_2"></i><div><span class="num">2000<sup>+</sup><sub>个</sub></span><span>在线视频总数</span></div></li>
+				<li class="col-md-3"><i class="icon_3"></i><div><span class="num">20000<sup>+</sup><sub>小时</sub></span><span>在线课程时长</span></div></li>
+				<li class="last col-md-3"><i class="icon_4"></i><div><span class="num">20000000<sup>+</sup><sub>次</sub></span><span>视频点击总量</span></div></li>
+			</ul>
+		</div>
+	</div>
+    <section class="index-course-list lazyload">
+      <div class="container">
+	    <div class="text-line  hidden-xs">
+            <h5><span>精品网校课程</span><div class="line"></div></h5>
+            <div class="subtitle">精选网校课程，满足你的学习需求。</div>
+          </div>
+        <div class="es-filter">
+          <ul id="myTab" class="nav clearfix nav-tabs">
+            <li class="active"><a href="#zuixin" data-toggle="tab">最新</a></li>
+            <li><a href="#tuijian" data-toggle="tab">推荐</a></li>
+            <li><a href="#free" data-toggle="tab">免费</a></li>
+          </ul>
+        </div>
+        <div id="myTabContent" class="tab-content">
+         <div class="tab-pane fade in active row item  course-list" id="zuixin">
+          <volist name="zx_courselist" id="vo">
+            <div class="col-lg-3 col-md-4 col-xs-6">
+             <div class="course-item">
+                <div class="course-img">
+					  <a href="{:leuu('course/Course/courseinfo',array('id'=>$vo['id']))}">
+					  
+					     <if condition="empty($vo['cs_picture'])">
+						   <img class="transform img-responsive " src="__PUBLIC__/images/course.png">
+						 <else /> 
+						   <img class="transform img-responsive "  src="{$vo['cs_picture']}">
+						 </if> 
+						
+						
+						<if condition="$vo['course_type']=='live'">
+							<span class="tags">
+							   <span class="tag-live"></span>
+							</span>
+						<else /> 
+							 <if condition="$vo['isover']==0">
+								<span class="tags">
+								    <span class="tag-serialing"></span>
+								</span>
+							 <else />
+							    <span class="tags">
+								    <span class="tag-finished"></span>
+								</span>	
+							 </if>
+						</if>
+						<div class="course-show clearfix">
+						 <if condition="empty($vo['tpic'])">
+						   <img src="__PUBLIC__/simplebootx/public/images/defult.jpg" class="img-circle pull-left">
+						 <else /> 
+						   <img src="{:sp_get_user_avatar_url($vo['tpic'])}?t={:time()}" class="img-circle  pull-left" /> 
+						 </if> 
+							<div class="pull-left">
+							  <h4>{$vo['teacher']}</h4>
+							  <p>{$vo['cs_name']}</p>
+							</div>
+						 </div>
+					  </a>
+                 </div>
+                 <div class="course-info">
+                   <div class="title"><a href="{:leuu('course/Course/courseinfo',array('id'=>$vo['id']))}">{$vo['cs_name']}</a></div>
+                    <div class="metas clearfix">
+                      <span class="num"><i class="es-icon es-icon-people"></i>{$vo['xueyuannum']}人在学</span>
+					  <span class="comment"><i class="es-icon es-icon-textsms"></i>{$vo['pinglununm']}</span>
+					  <if condition="!$vo['cs_price']==0">
+                         <span class="price price-num">¥{$vo['cs_price']}.00</span> 
+					 <else /> 
+					     <span class="price price-num text-success">免费</span>
+				  	 </if>						
+                    </div>
+                  </div>
+                </div>
+              </div> 
+             </volist>       
+           </div>
+           <div class="tab-pane fade  item row item course-list" id="tuijian">
+             <volist name="tuijian_courselist" id="vo"> 
+               <div class="col-lg-3 col-md-4 col-xs-6">
+                <div class="course-item">
+                 <div class="course-img">
+                  <a href="{:leuu('course/Course/courseinfo',array('id'=>$vo['id']))}">
+				        <if condition="empty($vo['cs_picture'])">
+						   <img class="transform img-responsive " src="__PUBLIC__/images/course.png">
+						 <else /> 
+						   <img class="transform img-responsive "  src="{$vo['cs_picture']}">
+						 </if> 
+				        <if condition="$vo['course_type']=='live'">
+							<span class="tags">
+							   <span class="tag-live"></span>
+							</span>
+						<else /> 
+							 <if condition="$vo['isover']==0">
+								<span class="tags">
+								    <span class="tag-serialing"></span>
+								</span>
+							 <else />
+							    <span class="tags">
+								    <span class="tag-finished"></span>
+								</span>	
+							 </if>
+						</if> 
+                    <div class="course-show clearfix">
+                      <if condition="empty($vo['tpic'])">
+                       <img src="__PUBLIC__/simplebootx/public/images/1803026e1ab3793901.JPG" class="img-circle pull-left">
+					 <else /> 
+					   <img src="{:sp_get_user_avatar_url($vo['tpic'])}?t={:time()}" class="img-circle  pull-left" /> 
+					 </if> 
+                        <div class="pull-left">
+                          <h4>{$vo['teacher']}</h4>
+                          <p>{$vo['cs_name']}</p>
+                        </div>
+                     </div>
+                  </a>
+                 </div>
+                 <div class="course-info">
+                   <div class="title"><a href="{:leuu('course/Course/courseinfo',array('id'=>$vo['id']))}">{$vo['cs_name']}</a></div>
+                     <div class="metas clearfix">
+                      <span class="num"><i class="es-icon es-icon-people"></i>{$vo['xueyuannum']}人在学</span>
+					  <span class="comment"><i class="es-icon es-icon-textsms"></i>{$vo['pinglununm']}</span>
+                      <if condition="!$vo['cs_price']==0">
+                         <span class="price price-num">¥{$vo['cs_price']}.00</span> 
+					 <else /> 
+					     <span class="price price-num text-success">免费</span>
+				  	 </if>		                       
+                    </div>
+                  </div>
+                </div>
+               </div> 
+             </volist>   
+           </div>
+           <div class="tab-pane fade  item row item course-list" id="free">
+             <volist name="free_courselist" id="vo"> 
+               <div class="col-lg-3 col-md-4 col-xs-6">
+                <div class="course-item">
+                 <div class="course-img">
+                  <a href="{:leuu('course/Course/courseinfo',array('id'=>$vo['id']))}">
+				        <if condition="empty($vo['cs_picture'])">
+						   <img class="transform img-responsive " src="__PUBLIC__/images/course.png">
+						 <else /> 
+						   <img class="transform img-responsive "  src="{$vo['cs_picture']}">
+						 </if> 
+				        <if condition="$vo['course_type']=='live'">
+							<span class="tags">
+							   <span class="tag-live"></span>
+							</span>
+						<else /> 
+							 <if condition="$vo['isover']==0">
+								<span class="tags">
+								    <span class="tag-serialing"></span>
+								</span>
+							 <else />
+							    <span class="tags">
+								    <span class="tag-finished"></span>
+								</span>	
+							 </if>
+						</if>
+                    <div class="course-show clearfix">
+                      <if condition="empty($vo['tpic'])">
+                       <img src="__PUBLIC__/simplebootx/public/images/1803026e1ab3793901.JPG" class="img-circle pull-left">
+					 <else /> 
+					   <img src="{:sp_get_user_avatar_url($vo['tpic'])}?t={:time()}" class="img-circle  pull-left" /> 
+					 </if> 
+                        <div class="pull-left">
+                          <h4>{$vo['teacher']}</h4>
+                          <p>{$vo['cs_name']}</p>
+                        </div>
+                     </div>
+                  </a>
+                 </div>
+                 <div class="course-info">
+                   <div class="title"><a href="{:leuu('course/Course/courseinfo',array('id'=>$vo['id']))}">{$vo['cs_name']}</a></div>
+                     <div class="metas clearfix">
+                      <span class="num"><i class="es-icon es-icon-people"></i>{$vo['xueyuannum']}人在学</span>
+					  <span class="comment"><i class="es-icon es-icon-textsms"></i>{$vo['pinglununm']}</span>
+                      <if condition="!$vo['cs_price']==0">
+                         <span class="price price-num">¥{$vo['cs_price']}.00</span> 
+					 <else /> 
+					     <span class="price price-num text-success">免费</span>
+				  	 </if>		                        
+                    </div>
+                  </div>
+                </div>
+               </div> 
+             </volist>   
+           </div>
+         </div>
+         
+      </div>
+      </section>
+	  <section class="recommend-teacher">
+		<div class="container">
+			<div class="text-line">
+				<h5><span>金牌讲师</span><div class="line"></div></h5>
+				<div class="subtitle">名师汇集，保证教学质量与学习效果。</div>
+			</div>
+			<div class="row">
+			    <volist name="teacherlist" id="vo"> 
+					<div class="col-md-3 col-xs-6">
+						<div class="teacher-item">
+							<div class="teacher-top">
+								<a class="teacher-img" href="{:u('Teacher/Teacher/about',array('id'=>$vo['id']))}">
+								    <if condition="empty($vo['avatar'])"> 
+										<img src="__PUBLIC__/simplebootx/public/images/093958e59110293063.jpg" class="img-circle" style="max-width:150px;width:150px;"/>
+									<else /> 
+										<img src="{:sp_get_user_avatar_url($vo['avatar'])}" class="img-circle" style="max-width:150px;width:150px;"/> 
+									</if>
+								</a>
+								<h3 class="title">
+									<a class="link-dark" href="{:u('Teacher/Teacher/about',array('id'=>$vo['id']))}">{$vo['user_nicename']}</a>
+								</h3>
+								<div class="position">
+									{$vo['zhicheng']|default="该教师没有设置！"}
+								</div>
+							</div>
+							<div class="teacher-bottom">
+								<div class="about">
+									{$vo['signature']|default="该教师没有设置！"}
+								</div>
+								<div class="metas">
+									<a class="btn btn-primary btn-sm follow-btn" href="{:u('Teacher/Teacher/about',array('id'=>$vo['id']))}">进入教师中心</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</volist>	
+			</div>
+			<div class="section-more-btn">
+				<a href="{:u('Teacher/Teacher/index')}" class="btn btn-default btn-lg">
+					更多教师 <i class="mrs-o es-icon es-icon-chevronright"></i>
+				</a>
+			</div>
+        </div>
+     </section>
+     <section class="index-introduction hidden-xs">
+       <div id="carousel" class="carousel slide" data-ride="carousel">
+       <ol class="carousel-indicators">
+        <volist name="mslide" id="vo" key="$key">
+          <if condition="$key eq 0">
+             <li data-target="#carousel" data-slide-to="{$key}" class="active"></li>
+          <else/>
+             <li data-target="#carousel" data-slide-to="{$key}" class=""></li>
+          </if>
+        </volist>  
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <volist name="mslide" id="vo" key="$key">
+         <if condition="$key eq 0">
+            <div class="item active">
+             <a href="{$vo['slide_url']}" target="_self"><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" alt="{$vo['slide_des']}"></a>
+            </div>
+          <else/>
+            <div class="item">
+             <a href="{$vo['slide_url']}" target="_self"><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" alt="{$vo['slide_des']}"></a>
+            </div>
+         </if>
+        </volist>  
+      </div>
+     </div>
+     </section>
+     <if condition="!empty($articlelist)">
+      <section class="group-dynamic clearfix">
+        <div class="container">
+         <volist name="articlelist" id="vo" key="k">
+           <div class="col-md-4">
+            <div class="course_sy2 ">
+                 <div class="opb3">{$vo['name']}<div class=" mor11"><a href="{:u('Portal/Index/article',array('termid'=>$vo['term_id']))}">更多&gt;</a></div></div>
+               <volist name="vo['voo']" id="sub" key="k"> 
+        	       <div class="course_sy3b op3"><a href="{:u('Portal/Index/content',array('id'=>$sub['id'],'termid'=>$sub['term_id']))}" target="_blank" title="">{$sub['post_title']}</a></div>	
+        	   </volist>
+        	</div>
+           </div>
+          </volist>  
+        </div>
+      </section>
+     </if>
+<tc_include file="Public:scripts" />
+<tc_include file="Public:footer" />

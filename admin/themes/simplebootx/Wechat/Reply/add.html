@@ -1,0 +1,75 @@
+<layout name="tab_add_layout" />
+
+<div class="result-wrap">
+    <div class="result-content">
+        <ul class="nav nav-tabs" role="tablist" id="myTab" style="height:40px;">
+            <li class="active"><a href="#general" role="tab" data-toggle="tab">{:L('tab_general')}</a></li>
+            <li><a href="#detail" role="tab" data-toggle="tab">{:L('tab_content')}</a></li>
+        </ul>
+
+        <form action="{:U('insert')}" method="post" id="myform" name="myform" enctype="multipart/form-data">
+        <div class="tab-content">
+            <div class="tab-pane active" id="general">
+                <table class="insert-tab" width="100%">
+                    <tbody>
+
+                        <tr>
+                            <th width="150"><i class="require-red">*</i>{:L('key_word')}:</th>
+                            <td>
+                                
+                                <input class="form-control length_3" name="data[key_word]" maxlength="20" size="50" value="" type="text" />
+                            </td>
+                        </tr>
+				
+				        <tr>
+				          <th width="150"><i class="require-red">*</i>{:L('match_type')}:</th>
+				          <td><div class="col-md-3">
+				              <div class="btn-group" data-toggle="buttons">
+				                <label class="btn btn-primary btn-sm active">
+				                  <input type="radio" name="data[match_type]" id="match_type1" value="full" checked>
+				                  {:L('match_full')} </label>
+				                <label class="btn btn-primary btn-sm">
+				                  <input type="radio" name="data[match_type]" id="match_type2" value="contain">
+				                  {:L('match_contain')} </label>
+				              </div>
+				            </div></td>
+				        </tr>
+                        
+             
+                        <tr>
+                            <th width="150"><i class="require-red">*</i>{:L('reply_type')}:</th>
+                            <td>
+				            	<select name='data[reply_type]' class="form-control input-sm" onchange="typeChanged()" style="width:200px;">
+				            		<option value="0" selected="true">{:L('select_reply_type')}</option>
+				            		{$reply_type_option}
+				            	</select>
+                            </td>
+                        </tr>
+				                   
+                        <tr>
+                            <th width="150"><i class="require-red">*</i>{:L('content')}:</th>
+					          <td>
+					              <textarea name='data[content]' rows="6" cols="50" class="input-sm"></textarea>
+					           </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane" id="detail">
+                <table class="table table-hover" width="90%" id="detail-table">
+                    <tr>
+                        <td><div class="col-md-9"> 
+                            <script id="rich_text_area" name="data[content]" type="text/plain" style="width:810px; height:360px;"></script> 
+                        </div></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="button-div">
+                <input class="btn btn-primary btn6 mr10" value="{:L('button_submit')}" type="submit">
+                <input class="btn btn-primary btn6 mr10" onclick="history.go(-1)" value="{:L('button_return')}" type="button">
+            </div>
+        </form>
+    </div>
+</div>

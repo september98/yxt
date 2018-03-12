@@ -1,0 +1,38 @@
+  <div class="es-footer-link">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12 footer-main clearfix">
+       <volist name="dnav" id="vo">
+         <div class="link-item ">
+           <h3>{$vo['label']}</h3>
+           <ul>
+            <volist name="vo['voo']" id="sub">
+              <li><a href="{$sub['href']|sp_get_href}" target="_blank">{$sub['label']}</a></li>
+            </volist>
+           </ul>
+         </div>
+       </volist>  
+     </div>
+    </div>
+	<div class="fr_link">
+	  <div class="yq_lk">
+	     <h3>友情链接</h3>
+		 <volist name="links" id="vo">
+		   <a href="{$vo['link_url']}"  target="{$vo['link_target']}" title="{$vo['link_name']}">{$vo['link_name']}</a>
+		 </volist> 
+	  </div>
+	</div>       
+  </div>
+ </div>
+<footer class="es-footer">
+  <div class="copyright">
+    <div class="container">Powered by <a href="__ROOT__/" target="_blank">{$site_name}</a>©2016-2018 <a class="mlm" href="__ROOT__/" target="_blank"></a>      
+       <div class="mts">课程内容版权均归<a href="/">{$site_name}文化传播有限公司</a>
+           所有<a class="mlm" href="http://www.miibeian.gov.cn/" target="_blank">{$site_icp}</a>{$site_tongji}
+       </div>
+       
+    </div>
+  </div>
+</footer>    
+</body>
+</html>
